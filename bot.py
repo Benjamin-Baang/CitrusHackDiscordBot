@@ -25,8 +25,13 @@ async def fact(ctx, animal: str):
         facts = json.loads(requests.get('https://cat-fact.herokuapp.com/facts').content)
         response = facts[random.randint(0, len(facts)-1)]['text']
     elif animal == 'dog':
+<<<<<<< Updated upstream
         facts = json.loads(requests.get('https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=1').content)
         response = facts[0]['fact']
+=======
+        facts = json.loads(requests.get('https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all').content)
+        response = facts[random.randint(0, len(facts)-1)]['text']
+>>>>>>> Stashed changes
     await ctx.send(response)
 
 bot.run(TOKEN)
