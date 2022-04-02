@@ -21,16 +21,12 @@ async def on_ready():
 
 @bot.command(name='facts')
 async def fact(ctx, animal: str):
-    # cat = [
-    #     'Meow!',
-    # ]
-    # response = random.choice(cat)
-    # await ctx.send(response)
     if animal == 'cat':
         facts = json.loads(requests.get('https://cat-fact.herokuapp.com/facts').content)
         response = facts[random.randint(0, len(facts)-1)]['text']
     elif animal == 'dog':
-        response = 'Woof!'
+        facts = json.loads(requests.get('https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=1').content)
+        response = facts[0]['fact']
     await ctx.send(response)
 
 bot.run(TOKEN)
