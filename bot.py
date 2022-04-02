@@ -29,7 +29,7 @@ async def fact(ctx, animal: str):
         facts = json.loads(requests.get('https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=1').content)
         response = facts[0]['fact']
     await ctx.send(response)
-
+    
 @bot.command(name='article')
 async def article(ctx):
     with open('animals_names.txt') as animals_name:
@@ -38,5 +38,14 @@ async def article(ctx):
     
     await ctx.send(response)
     
+@bot.command(name='pics')
+async def fact(ctx, animal: str):
+    if animal == 'cat':
+        image = 'images/cats/' + str(random.randint(1,5)) + '.png'
+        response = discord.File(image)
+    elif animal == 'dog':
+        image = 'images/dogs/' + str(random.randint(1,7)) + '.png'
+        response = discord.File(image)
+    await ctx.send(file=response)
 
 bot.run(TOKEN)
