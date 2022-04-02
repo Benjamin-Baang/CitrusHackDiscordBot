@@ -24,9 +24,11 @@ async def fact(ctx, animal: str):
     if animal == 'cat':
         facts = json.loads(requests.get('https://cat-fact.herokuapp.com/facts').content)
         response = facts[random.randint(0, len(facts)-1)]['text']
-    elif animal == 'dog':
+    elif animal == 'fish':
         facts = json.loads(requests.get('https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=1').content)
         response = facts[0]['fact']
     await ctx.send(response)
+    
+    print(animal)
 
 bot.run(TOKEN)
